@@ -1,3 +1,10 @@
+@extends('layouts.main')
+
+@section('title', 'Home')
+
+@section('content')
+
+<img src="/img/imageCentral.jpg" alt="">
 <h1>Ruan</h1>
 
 @if(10>5)
@@ -12,3 +19,5 @@
 {{$nome}}
  2222222111
 @endif
+
+@endsection
