@@ -21,7 +21,8 @@ Route::get('/contact', function () {
     $nome = "Ruan";
     return view('contatc', ["nome" => $nome]);
 });
-Route::get('/produtos', function (){
 
-    return view('products');
+Route::get('/produtos/{id}/{name?}', function ($id =1, $name= ""){
+
+    return view('products', ['id' => $id, 'name' => $name]);
 });
