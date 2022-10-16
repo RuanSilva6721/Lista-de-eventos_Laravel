@@ -3,12 +3,7 @@
 @section('title', 'Home')
 
 @section('content')
-{{--
-<img src="/img/imageCentral.jpg" alt="imageCentral" id="imageCentral">
 
- 
-
-     --}}
     <div id="search-container" class="col-md-12">
         <p id="title-buscar">Buscar Eventos</p>
         <form action="">
