@@ -7,6 +7,7 @@
 <h1>Crie um evento</h1>
 <div id="event-create-container" class="col-md-6 offset-md-3">
     <form action="/events" method="POST">
+        @csrf
     <div class="form-group">
         <label for="title">Evento</label>
         <input type="text" class="form-control" id="title" name="title" placeholder="Nome do evento">
