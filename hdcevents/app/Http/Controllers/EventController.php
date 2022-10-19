@@ -82,8 +82,10 @@ class EventController extends Controller
 
         $events = $user->events;
 
+        $eventsAsParticipant = $user->eventsAsParticipant;
 
-        return view('events.dashboard', ['events' => $events]);
+
+        return view('events.dashboard', ['events' => $events, "eventsAsParticipant" => $eventsAsParticipant]);
 
     }
 
@@ -93,13 +95,18 @@ class EventController extends Controller
     }
 
     public function edit($id){
+        $user = auth()->user();
         $event = Event::findOrFail($id);
+
+        if($user->id != $event->id){
+            return redirect('/dashboard');
+        }
 
         return view('events.edit', ['event' =>$event]);
     }
     public function update(Request $request){
         $data = $request->all();
-        
+
 
         if($request->hasfile('image') && $request->file('image')->isValid()){
             $requestImage = $request->image;
@@ -118,6 +125,26 @@ class EventController extends Controller
 
 
         return redirect('/dashboard')->with('msg', "Evento editado com sucesso!");
+    }
+
+    public function joinEvent($id){
+        $user = auth()->user();
+
+        $user->eventsAsParticipant()->attach($id);
+
+        $event = Event::findOrFail($id);
+
+        return redirect('/dashboard')->with('msg', 'Você foi adicionado no evento com sucesso!'.$event->title);
+    }
+
+    public function leaveEvent($id){
+        $user = auth()->user();
+        $user->eventsAsParticipant()->detach($id);
+
+        $event = Event::findOrFail($id);
+
+        return redirect('/dashboard')->with('msg', 'Você saiu do evento com sucesso!'.$event->title);
+
     }
 
 }
