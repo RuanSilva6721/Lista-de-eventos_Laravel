@@ -201,3 +201,7 @@ footer p{
 .dashboard-title-container th{
    width: 25%; 
 }
+.img-preview{
+    width: 100px;
+    margin: 20px;
+}
